@@ -8,7 +8,7 @@ Most simple way to load JS and CSS resources asynchronously and boost page insig
 `````Html
   <script src='path/to/asyncfly.js'></script>
 `````
-      or if you are using CDN, Use this
+   or if you are using CDN, Use this
 `````Html
   <script src='path/to/asyncfly.js'></script>
 `````
@@ -17,7 +17,7 @@ Most simple way to load JS and CSS resources asynchronously and boost page insig
   <script src='path/to/main.js'></script>
   <script src='path/to/bootstrap.js'></script>
 `````
-      replace the `src` attribute with the `asyncfly` atttribute like given below
+   replace the `src` attribute with the `asyncfly` atttribute like given below
 `````Html
   <script asyncfly='path/to/main.js'></script>
   <script asyncfly='path/to/bootstrap.js'></script>
