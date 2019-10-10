@@ -1,8 +1,8 @@
-var asyncfly_js_count = 0;
-var asyncfly_show_loading = true;
-var asyncfly_loading_color = "#3498db";
-var asyncfly_loading_bg = "#ffffff";
-var asyncfly_on_done = function () { };
+var AsyncBee_js_count = 0;
+var AsyncBee_show_loading = true;
+var AsyncBee_loading_color = "#3498db";
+var AsyncBee_loading_bg = "#ffffff";
+var AsyncBee_on_done = function () { };
 
 if(!window.jQuery) {
    var script = document.createElement('script');
@@ -11,18 +11,18 @@ if(!window.jQuery) {
    document.getElementsByTagName('head')[0].appendChild(script);
 }
 
-function Asyncfly(var_async){
-    if(typeof var_async.ondone!=='undefined') asyncfly_on_done = var_async.ondone;
-    if(typeof var_async.loadingcolor!=='undefined') asyncfly_loading_color = var_async.loadingcolor;
-    if(typeof var_async.loadingbgcolor!=='undefined') asyncfly_loading_bg = var_async.loadingbgcolor;
-    if(var_async.loading==false) asyncfly_show_loading = false;
-    if(asyncfly_show_loading){
+function AsyncBee(var_async){
+    if(typeof var_async.ondone!=='undefined') AsyncBee_on_done = var_async.ondone;
+    if(typeof var_async.loadingcolor!=='undefined') AsyncBee_loading_color = var_async.loadingcolor;
+    if(typeof var_async.loadingbgcolor!=='undefined') AsyncBee_loading_bg = var_async.loadingbgcolor;
+    if(var_async.loading==false) AsyncBee_show_loading = false;
+    if(AsyncBee_show_loading){
         $("head").append(`
             <style>
-                .asyncfly_loading_container{
+                .AsyncBee_loading_container{
                     width: 100%;
                     height: 100vh;
-                    background: `+asyncfly_loading_bg+`;
+                    background: `+AsyncBee_loading_bg+`;
                     position: fixed;
                     top: 0px;
                     left: 0px;
@@ -41,9 +41,9 @@ function Asyncfly(var_async){
                     align-items: center;
                 }
                 
-                .asyncfly_loading_container div {
+                .AsyncBee_loading_container div {
                     border: 3px solid rgba(0,0,0,0);
-                    border-top: 3px solid `+asyncfly_loading_color+`;
+                    border-top: 3px solid `+AsyncBee_loading_color+`;
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
@@ -56,37 +56,37 @@ function Asyncfly(var_async){
                 }
             </style>
         `);
-        $("body").append(`<div class="asyncfly_loading_container"><div></div></div>`);
+        $("body").append(`<div class="AsyncBee_loading_container"><div></div></div>`);
     }
-    setTimeout("asyncfly_init()", 5000);
+    setTimeout("AsyncBee_init()", 5000);
 }
         
-function asyncfly_init(){
-    asyncfly_js = [];
-    asyncfly_css = [];
+function AsyncBee_init(){
+    AsyncBee_js = [];
+    AsyncBee_css = [];
     $("script").each(function(index) {
-        var temp = $(this).attr("asyncfly");
-        if(temp!==undefined) asyncfly_js.push($(this).attr("asyncfly"));
+        var temp = $(this).attr("AsyncBee");
+        if(temp!==undefined) AsyncBee_js.push($(this).attr("AsyncBee"));
     });
     $("link").each(function(index) {
-        var temp = $(this).attr("asyncfly");
-        if(temp!==undefined) asyncfly_css.push($(this).attr("asyncfly"));
+        var temp = $(this).attr("AsyncBee");
+        if(temp!==undefined) AsyncBee_css.push($(this).attr("AsyncBee"));
     });
-    asyncfly_css.forEach(function (asyncfly_css_each){
-        $('head').append('<link rel="stylesheet" href="'+asyncfly_css_each+'" type="text/css" />');
+    AsyncBee_css.forEach(function (AsyncBee_css_each){
+        $('head').append('<link rel="stylesheet" href="'+AsyncBee_css_each+'" type="text/css" />');
     });
-    asyncfly_load();
+    AsyncBee_load();
 }
 
-function asyncfly_load(){
-    if(asyncfly_js_count<=(asyncfly_js.length-1)){
-        $.getScript(asyncfly_js[asyncfly_js_count], function(){
-            asyncfly_js_count++;
-            if(asyncfly_js_count>(asyncfly_js.length-1)){
-                if(asyncfly_show_loading) $(".asyncfly_loading_container").fadeOut();
-                asyncfly_on_done();
+function AsyncBee_load(){
+    if(AsyncBee_js_count<=(AsyncBee_js.length-1)){
+        $.getScript(AsyncBee_js[AsyncBee_js_count], function(){
+            AsyncBee_js_count++;
+            if(AsyncBee_js_count>(AsyncBee_js.length-1)){
+                if(AsyncBee_show_loading) $(".AsyncBee_loading_container").fadeOut();
+                AsyncBee_on_done();
             }
-            asyncfly_load();
+            AsyncBee_load();
         });
     }
 }
