@@ -57,7 +57,7 @@ myasyncbee = new asyncBee({
     loadingcolor: '#000000',
     loadingbgcolor: 'rgb(255, 181, 46)',
     ondone: function (){ 
-        //alert("hello");
+        alert("hello");
     }
 });
 `````
