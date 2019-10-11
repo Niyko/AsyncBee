@@ -1,8 +1,8 @@
-var AsyncBee_js_count = 0;
-var AsyncBee_show_loading = true;
-var AsyncBee_loading_color = "#3498db";
-var AsyncBee_loading_bg = "#ffffff";
-var AsyncBee_on_done = function () { };
+var asyncbee_js_count = 0;
+var asyncbee_show_loading = true;
+var asyncbee_loading_color = "#3498db";
+var asyncbee_loading_bg = "#ffffff";
+var asyncbee_on_done = function () { };
 
 if(!window.jQuery) {
    var script = document.createElement('script');
@@ -11,18 +11,18 @@ if(!window.jQuery) {
    document.getElementsByTagName('head')[0].appendChild(script);
 }
 
-function AsyncBee(var_async){
-    if(typeof var_async.ondone!=='undefined') AsyncBee_on_done = var_async.ondone;
-    if(typeof var_async.loadingcolor!=='undefined') AsyncBee_loading_color = var_async.loadingcolor;
-    if(typeof var_async.loadingbgcolor!=='undefined') AsyncBee_loading_bg = var_async.loadingbgcolor;
-    if(var_async.loading==false) AsyncBee_show_loading = false;
-    if(AsyncBee_show_loading){
+function asyncBee(var_async){
+    if(typeof var_async.ondone!=='undefined') asyncbee_on_done = var_async.ondone;
+    if(typeof var_async.loadingcolor!=='undefined') asyncbee_loading_color = var_async.loadingcolor;
+    if(typeof var_async.loadingbgcolor!=='undefined') asyncbee_loading_bg = var_async.loadingbgcolor;
+    if(var_async.loading==false) asyncbee_show_loading = false;
+    if(asyncbee_show_loading){
         $("head").append(`
             <style>
-                .AsyncBee_loading_container{
+                .asyncbee_loading_container{
                     width: 100%;
                     height: 100vh;
-                    background: `+AsyncBee_loading_bg+`;
+                    background: `+asyncbee_loading_bg+`;
                     position: fixed;
                     top: 0px;
                     left: 0px;
@@ -41,9 +41,9 @@ function AsyncBee(var_async){
                     align-items: center;
                 }
                 
-                .AsyncBee_loading_container div {
+                .asyncbee_loading_container div {
                     border: 3px solid rgba(0,0,0,0);
-                    border-top: 3px solid `+AsyncBee_loading_color+`;
+                    border-top: 3px solid `+asyncbee_loading_color+`;
                     border-radius: 50%;
                     width: 50px;
                     height: 50px;
@@ -56,37 +56,43 @@ function AsyncBee(var_async){
                 }
             </style>
         `);
-        $("body").append(`<div class="AsyncBee_loading_container"><div></div></div>`);
+        $("body").append(`<div class="asyncbee_loading_container"><div></div></div>`);
     }
-    setTimeout("AsyncBee_init()", 5000);
+    setTimeout("asyncbee_init()", 5000);
 }
         
-function AsyncBee_init(){
-    AsyncBee_js = [];
-    AsyncBee_css = [];
+function asyncbee_init(){
+    asyncbee_js = [];
+    asyncbee_css = [];
+    $("img").each(function(index) {
+        var temp = $(this).attr("asyncbee");
+        if(temp!==undefined) {
+            $(this).attr("src", $(this).attr("asyncbee"));
+        }
+    });
     $("script").each(function(index) {
-        var temp = $(this).attr("AsyncBee");
-        if(temp!==undefined) AsyncBee_js.push($(this).attr("AsyncBee"));
+        var temp = $(this).attr("asyncbee");
+        if(temp!==undefined) asyncbee_js.push($(this).attr("asyncbee"));
     });
     $("link").each(function(index) {
-        var temp = $(this).attr("AsyncBee");
-        if(temp!==undefined) AsyncBee_css.push($(this).attr("AsyncBee"));
+        var temp = $(this).attr("asyncbee");
+        if(temp!==undefined) asyncbee_css.push($(this).attr("asyncbee"));
     });
-    AsyncBee_css.forEach(function (AsyncBee_css_each){
-        $('head').append('<link rel="stylesheet" href="'+AsyncBee_css_each+'" type="text/css" />');
+    asyncbee_css.forEach(function (asyncbee_css_each){
+        $('head').append('<link rel="stylesheet" href="'+asyncbee_css_each+'" type="text/css" />');
     });
-    AsyncBee_load();
+    asyncbee_load();
 }
 
-function AsyncBee_load(){
-    if(AsyncBee_js_count<=(AsyncBee_js.length-1)){
-        $.getScript(AsyncBee_js[AsyncBee_js_count], function(){
-            AsyncBee_js_count++;
-            if(AsyncBee_js_count>(AsyncBee_js.length-1)){
-                if(AsyncBee_show_loading) $(".AsyncBee_loading_container").fadeOut();
-                AsyncBee_on_done();
+function asyncbee_load(){
+    if(asyncbee_js_count<=(asyncbee_js.length-1)){
+        $.getScript(asyncbee_js[asyncbee_js_count], function(){
+            asyncbee_js_count++;
+            if(asyncbee_js_count>(asyncbee_js.length-1)){
+                if(asyncbee_show_loading) $(".asyncbee_loading_container").fadeOut();
+                asyncbee_on_done();
             }
-            AsyncBee_load();
+            asyncbee_load();
         });
     }
 }
