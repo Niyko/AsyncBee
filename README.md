@@ -5,7 +5,7 @@ Most simple way to load JS and CSS resources asynchronously and boost page insig
 ## 1) Download and install AsyncBee
 First of all we need to download `AsyncBee.js` file from this GitHub repository or if you don't want to include Swiper files in your project, you may use it from CDN :
 `````Html
-<script src='https://rawcdn.githack.com/Niyko/AsyncBee/30bba95cca657220e65a146fa7e382208c0bb16c/AsyncBee.js'></script>`
+<script src='https://cdn.jsdelivr.net/gh/Niyko/AsyncBee/AsyncBee.js'></script>`
 `````
 ## 2) Include AsyncBee File To Website
 After that we need to include AsyncBee.js files to our website/app. In your html file:
