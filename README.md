@@ -48,13 +48,12 @@ All the options aviablabe in the myAsyncBee() funtion are given below and an exa
 | ondone | is a callback and called when finished loading all resources | function (){ alert("all loaded"); } |
 
 `````Javascript
-var myAsyncBee = new myAsyncBee({
-   loading: false,
-   loadingcolor: '#ff0000',
-   loadingbgcolor: 'rgb(255,255,255)',
-   ondone: function (){
-      alert("all loaded");
-   }
+myasyncbee = new asyncBee({
+    loadingcolor: '#000000',
+    loadingbgcolor: 'rgb(255, 181, 46)',
+    ondone: function (){ 
+        //alert("hello");
+    }
 });
 `````
 # License
