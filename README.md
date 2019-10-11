@@ -51,6 +51,7 @@ All the options aviablabe in the myAsyncBee() funtion are given below and an exa
 | ondone | is a callback and called when finished loading all resources | Function | function (){ alert("all loaded"); } |
 | loadingtime | Time delay for loading the resources and given in `Millisec` | Int | 5000 |
 
+Example usage of options:
 `````Javascript
 myasyncbee = new asyncBee({
     loadingcolor: '#000000',
