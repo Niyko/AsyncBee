@@ -35,7 +35,7 @@ Replace all your `src` attribute in <script> tag with `asyncbee` and replace the
 ## 4) Initialize AsyncBee
 Finally, we need to initialize AsyncBee in JS, To initilize add this below code in the inline script or in script file that is included in the very end of body (right before closing </body> tag):
 `````Javascript
-var myAsyncBee = new myAsyncBee();
+myasyncbee = new asyncBee();
 `````
 # Options
 All the options aviablabe in the myAsyncBee() funtion are given below and an example of its usage is also given below.
