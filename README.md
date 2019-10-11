@@ -1,5 +1,5 @@
 ![AsyncBee logo](https://i.imgur.com/vu55wrS.png)
-Most simple way to load JS and CSS resources asynchronously and boost page insight speed
+Most simple way to load Javascript, images and CSS resources asynchronously and boost page insight speed and increase the website's SEO scores. Just adding the `AsyncBee.js` file and changing the attributes will boost the Google's page insight speed from any score to 95 ~ 100. AsyncBee delays the resource to load up and synchronously loads the Javascript and other resource is right order without making any dependency errors. AsyncBee is very flexible and comes with a prebuild loading animation which can be fully customized.
 
 # Get started
 ## 1) Download and install AsyncBee
@@ -22,7 +22,7 @@ After that we need to include AsyncBee.js files to our website/app. In your html
    </html>
 `````
 ## 3) Replace all your `src` and `href` attribute
-Replace all your `src` attribute in <script> tag with `asyncbee` and replace the `href` attribute in <link> tag with `asyncbee`. If you want to load the images asycronully too, you can replace the `src` attribute in <img> tag with `asyncbee`.
+Replace all your `src` attribute in <script> tag with `asyncbee` and replace the `href` attribute in <link> tag with `asyncbee`. If you want to load the images asynchronously too, you can replace the `src` attribute in <img> tag with `asyncbee`.
 for example if your website contains script tags like this:
 `````Html
   <script src='path/to/main.js'></script>
@@ -44,7 +44,7 @@ myasyncbee = new asyncBee();
 All the options aviablabe in the myAsyncBee() funtion are given below and an example of its usage is also given below. All the options are optional.
 
 | Option | Description | Value Type | Example Value |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | loadingcolor | color of the loading spinner | String | #ff0000 or rgb(255,0,0) |
 | loadingbgcolor | color of the loading background | String | #ff0000 or rgb(255,0,0) |
 | loading | disable the default loading screen | Boolean | true or false |
