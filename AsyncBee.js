@@ -1,7 +1,21 @@
+/*===================================================================
+                                   ____            
+         /\                        |  _ \           
+        /  \   ___ _   _ _ __   ___| |_) | ___  ___ 
+       / /\ \ / __| | | | '_ \ / __|  _ < / _ \/ _ \
+      / ____ \\__ \ |_| | | | | (__| |_) |  __/  __/
+     /_/    \_\___/\__, |_| |_|\___|____/ \___|\___|
+                    __/ |                           
+                   |___/                           
+                   
+MADE WITH LOVE FROM NIYKO, CHECKOUT MORE FROM ME ON GITHUB.COM/NIYKO
+=====================================================================*/
+
 var asyncbee_js_count = 0;
 var asyncbee_show_loading = true;
 var asyncbee_loading_color = "#3498db";
 var asyncbee_loading_bg = "#ffffff";
+var asyncbee_loading_time = 5000;
 var asyncbee_on_done = function () { };
 
 if(!window.jQuery) {
@@ -11,10 +25,11 @@ if(!window.jQuery) {
    document.getElementsByTagName('head')[0].appendChild(script);
 }
 
-function asyncBee(var_async){
+function asyncBee(var_async={}){
     if(typeof var_async.ondone!=='undefined') asyncbee_on_done = var_async.ondone;
     if(typeof var_async.loadingcolor!=='undefined') asyncbee_loading_color = var_async.loadingcolor;
     if(typeof var_async.loadingbgcolor!=='undefined') asyncbee_loading_bg = var_async.loadingbgcolor;
+    if(typeof var_async.loadingtime!=='undefined') asyncbee_loading_time = var_async.loadingtime;
     if(var_async.loading==false) asyncbee_show_loading = false;
     if(asyncbee_show_loading){
         $("head").append(`
@@ -58,7 +73,7 @@ function asyncBee(var_async){
         `);
         $("body").append(`<div class="asyncbee_loading_container"><div></div></div>`);
     }
-    setTimeout("asyncbee_init()", 5000);
+    setTimeout("asyncbee_init()", asyncbee_loading_time);
 }
         
 function asyncbee_init(){
