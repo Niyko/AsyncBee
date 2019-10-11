@@ -29,8 +29,8 @@ Replace all your `src` attribute in <script> tag with `asyncbee` and replace the
 `````
    replace the `src` attribute with the `asyncbee` atttribute like given below
 `````Html
-  <script asyncfly='path/to/main.js'></script>
-  <script asyncfly='path/to/bootstrap.js'></script>
+  <script asyncbee='path/to/main.js'></script>
+  <script asyncbee='path/to/bootstrap.js'></script>
 `````
 ## 4) Initialize AsyncBee
 Finally, we need to initialize AsyncBee in JS, To initilize add this below code in the inline script or in script file that is included in the very end of body (right before closing </body> tag):
