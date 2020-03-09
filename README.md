@@ -3,7 +3,7 @@ Most simple way to load Javascript, images and CSS resources asynchronously and 
 
 # Get started
 ## 1) Download and install AsyncBee
-First of all we need to download `AsyncBee.js` file from this GitHub repository or if you don't want to include Swiper files in your project, you may use it from CDN :
+First of all we need to download `AsyncBee.js` file from this GitHub repository or if you don't want to include files in your project, you may use it from CDN :
 `````Html
 <script src='https://cdn.jsdelivr.net/gh/Niyko/AsyncBee/AsyncBee.js'></script>
 `````
