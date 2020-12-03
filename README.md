@@ -67,5 +67,5 @@ myasyncbee = new asyncBee({
 });
 `````
 # License
-PHPGit is licensed under the [GNU GENERAL PUBLIC LICENSE](https://github.com/Niyko/AsyncBee/blob/master/LICENSE).
+AsyncBee is licensed under the [GNU GENERAL PUBLIC LICENSE](https://github.com/Niyko/AsyncBee/blob/master/LICENSE).
 
