@@ -18,11 +18,17 @@ var asyncbee_loading_bg = "#ffffff";
 var asyncbee_loading_time = 5000;
 var asyncbee_on_done = function () { };
 
-if(!window.jQuery) {
-   var script = document.createElement('script');
-   script.type = "text/javascript";
-   script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
-   document.getElementsByTagName('head')[0].appendChild(script);
+function asyncbee_load_script(url, callback){
+    var script = document.createElement('script');
+    script.src = url;
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+
+function asyncbee_fade_out(el){
+    el.style.transition = "opacity 400ms";
+    el.style.opacity = 0;
+    setTimeout(function(){ el.remove(); }, 400);
 }
 
 function asyncBee(var_async={}){
@@ -32,8 +38,8 @@ function asyncBee(var_async={}){
     if(typeof var_async.loadingtime!=='undefined') asyncbee_loading_time = var_async.loadingtime;
     if(var_async.loading==false) asyncbee_show_loading = false;
     if(asyncbee_show_loading){
-        $("head").append(`
-            <style>
+        var style = document.createElement('style');
+        style.textContent = `
                 .asyncbee_loading_container{
                     width: 100%;
                     height: 100vh;
@@ -55,7 +61,7 @@ function asyncBee(var_async={}){
                     -webkit-align-items: center;
                     align-items: center;
                 }
-                
+
                 .asyncbee_loading_container div {
                     border: 3px solid rgba(0,0,0,0);
                     border-top: 3px solid `+asyncbee_loading_color+`;
@@ -64,47 +70,55 @@ function asyncBee(var_async={}){
                     height: 50px;
                     animation: spin 1s linear infinite;
                 }
-                    
+
                 @keyframes spin {
                     0% { transform: rotate(0deg); }
                     100% { transform: rotate(360deg); }
                 }
-            </style>
-        `);
-        $("body").append(`<div class="asyncbee_loading_container"><div></div></div>`);
+            `;
+        document.head.appendChild(style);
+
+        var loading_container = document.createElement('div');
+        loading_container.className = "asyncbee_loading_container";
+        loading_container.appendChild(document.createElement('div'));
+        document.body.appendChild(loading_container);
     }
-    setTimeout("asyncbee_init()", asyncbee_loading_time);
+    setTimeout(asyncbee_init, asyncbee_loading_time);
 }
         
 function asyncbee_init(){
     asyncbee_js = [];
     asyncbee_css = [];
-    $("img").each(function(index) {
-        var temp = $(this).attr("asyncbee");
-        if(temp!==undefined) {
-            $(this).attr("src", $(this).attr("asyncbee"));
+    document.querySelectorAll("img").forEach(function(img) {
+        var temp = img.getAttribute("asyncbee");
+        if(temp!==null) {
+            img.setAttribute("src", temp);
         }
     });
-    $("script").each(function(index) {
-        var temp = $(this).attr("asyncbee");
-        if(temp!==undefined) asyncbee_js.push($(this).attr("asyncbee"));
+    document.querySelectorAll("script").forEach(function(script) {
+        var temp = script.getAttribute("asyncbee");
+        if(temp!==null) asyncbee_js.push(temp);
     });
-    $("link").each(function(index) {
-        var temp = $(this).attr("asyncbee");
-        if(temp!==undefined) asyncbee_css.push($(this).attr("asyncbee"));
+    document.querySelectorAll("link").forEach(function(link) {
+        var temp = link.getAttribute("asyncbee");
+        if(temp!==null) asyncbee_css.push(temp);
     });
     asyncbee_css.forEach(function (asyncbee_css_each){
-        $('head').append('<link rel="stylesheet" href="'+asyncbee_css_each+'" type="text/css" />');
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = asyncbee_css_each;
+        link.type = "text/css";
+        document.head.appendChild(link);
     });
     asyncbee_load();
 }
 
 function asyncbee_load(){
     if(asyncbee_js_count<=(asyncbee_js.length-1)){
-        $.getScript(asyncbee_js[asyncbee_js_count], function(){
+        asyncbee_load_script(asyncbee_js[asyncbee_js_count], function(){
             asyncbee_js_count++;
             if(asyncbee_js_count>(asyncbee_js.length-1)){
-                if(asyncbee_show_loading) $(".asyncbee_loading_container").fadeOut();
+                if(asyncbee_show_loading) asyncbee_fade_out(document.querySelector(".asyncbee_loading_container"));
                 asyncbee_on_done();
             }
             asyncbee_load();
